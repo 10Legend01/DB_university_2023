@@ -1,0 +1,21 @@
+version: '3.1'
+
+services:
+
+  db_hw_university:
+    image: postgres:13
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: "user"
+      POSTGRES_PASSWORD: "random"
+      POSTGRES_DB: "homework"
+    volumes:
+      - ./postgresql_data:/var/lib/postgresql/data
+
+  adminer_hw_university:
+    image: adminer
+    restart: always
+    ports:
+      - 8081:8080
+
