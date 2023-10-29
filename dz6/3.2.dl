@@ -1,0 +1,4 @@
+WithMarks(StudentId, CourseName) :- Marks(StudentId, CourseId, _), Courses(CourseId, CourseName).
+WithPlan(GroupId, CourseName) :- Plan(GroupId, CourseId, _), Courses(CourseId, CourseName).
+res(StudentName, CourseName) :- WithMarks(StudentId, CourseName), Students(StudentId, StudentName, _).
+res(StudentName, CourseName) :- Students(_, StudentName, GroupId), WithPlan(GroupId, CourseName).

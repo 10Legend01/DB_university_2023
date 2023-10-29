@@ -1,0 +1,2 @@
+WithMarkOfLecturer(StudentId, GroupId) :- Marks(StudentId, CourseId, _), Plan(GroupId, CourseId, LecturerId), Lecturers(LecturerId, LecturerName), LecturerName = :LecturerName.
+res(StudentId) :- Students(StudentId, _, GroupId), WithMarkOfLecturer(StudentId, GroupId).

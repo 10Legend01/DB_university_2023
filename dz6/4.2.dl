@@ -1,0 +1,3 @@
+WithDebtMarks(StudentId, CourseId) :- Marks(StudentId, CourseId, Mark), Mark <= 2.
+WithPlan(GroupId, CourseId) :- Plan(GroupId, CourseId, _).
+res(StudentName, CourseName) :- Students(StudentId, StudentName, GroupId), WithPlan(GroupId, CourseId), WithDebtMarks(StudentId, CourseId), Courses(CourseId, CourseName).
