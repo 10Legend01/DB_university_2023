@@ -1,14 +1,15 @@
 create or replace function FlightStat(UserId int, Pass varchar(256), FlightId int)
 returns table(CanBook boolean, CanBuy boolean, Free int, Booked int, Sold int) as
 $$
-declare FT timestamp;
-declare PI int;
-declare CO boolean;
-declare CanBook boolean;
-declare CanBuy boolean;
-declare FreeCount int;
-declare BookedCount int;
-declare SoldCount int;
+declare
+    FT timestamp;
+    PI int;
+    CO boolean;
+    CanBook boolean;
+    CanBuy boolean;
+    FreeCount int;
+    BookedCount int;
+    SoldCount int;
 begin
     select FlightTime, PlaneId, CanOrder into FT, PI, CO from Flights where Flights.FlightId = FlightStat.FlightId;
     select
@@ -37,6 +38,6 @@ begin
 end;
 $$ language plpgsql;
 
-select FlightStat(1, '1233', 1);
+select FlightStat(1, '123', 1);
 
 select FlightStat(1, '1234', 2);

@@ -1,9 +1,10 @@
 create or replace function FreeSeats(FlightId int)
 returns table(SeatNo varchar(4)) as
 $$
-declare FT timestamp;
-declare CO boolean;
-declare PI int;
+declare
+    FT timestamp;
+    CO boolean;
+    PI int;
 begin
     select FlightTime, CanOrder, PlaneId into FT, CO, PI from Flights where Flights.FlightId = FreeSeats.FlightId;
     if (FT < now() + interval '3 days' or CO = false) then return;

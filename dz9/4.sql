@@ -1,9 +1,10 @@
 create or replace function BuyFree(FlightId int, SeatNo varchar(4))
 returns boolean as
 $$
-declare OI int;
-declare SI int;
-declare PI int;
+declare
+    OI int;
+    SI int;
+    PI int;
 begin
     if (now() + interval '3 hours' > (
             select FlightTime from Flights where Flights.FlightId = BuyFree.FlightId

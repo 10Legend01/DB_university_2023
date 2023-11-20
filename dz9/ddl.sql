@@ -1,3 +1,4 @@
+-- Таблица рейсов. Поле CanOrder отвечает за возможность делать брони и покупки.
 create table Flights (
     FlightId int not null,
     FlightTime timestamp not null,
@@ -7,6 +8,7 @@ create table Flights (
     unique (FlightId, PlaneId)
 );
 
+-- таблица мест в самолетах
 create table Seats (
     SeatId int not null,
     PlaneId int not null,
@@ -16,14 +18,19 @@ create table Seats (
     unique (SeatId, PlaneId)
 );
 
+-- Таблица пользователей
 create table Users (
     UserId integer not null,
     Pass varchar(256) not null,
     primary key (UserId)
 );
 
+-- Енум для таблицы заказов
 create type order_type as enum ('book', 'buy');
 
+-- Таблица заказов. Можно заказать бронь, можно заказать покупку билета.
+-- Примечание: столбец PlaneId имеет foreign key на таблицы рейсов и мест самолетов,
+-- таким образом гарантируется: Flights.PlaneId = Seats.PlaneId
 create table Orders (
     OrderId int not null generated always as identity,
     FlightId int not null,
@@ -38,5 +45,3 @@ create table Orders (
     foreign key (SeatId, PlaneId) references Seats(SeatId, PlaneId),
     foreign key (UserId) references Users(UserId)
 );
-
-create unique index if not exists orders_flightid_seatid_key on Orders (FlightId, SeatId);

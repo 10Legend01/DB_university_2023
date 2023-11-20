@@ -1,8 +1,9 @@
 create or replace function Reserve(UserId int, Pass varchar(256), FlightId int, SeatNo varchar(4))
 returns boolean as
 $$
-declare SI int;
-declare PI int;
+declare
+    SI int;
+    PI int;
 begin
     if (
         not authorize(Reserve.UserId, Reserve.Pass)
@@ -26,4 +27,4 @@ select Reserve(1, '123', 1, '123A');
 
 select Reserve(1, '1234', 1, '123A');
 
-select Reserve(1, '1234', 1, '123D');
+select Reserve(1, '1234', 1, '123B');
