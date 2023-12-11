@@ -1,0 +1,10 @@
+solved_task_by_session(SessionId, ContestId, Letter) :-
+    Sessions(SessionId, _, ContestId, _),
+    Runs(_, SessionId, Letter, _, 1).
+dont_solved_tasks_by_everyone(ContestId, Letter) :-
+    Problems(ContestId, Letter, _),
+    Sessions(SessionId, _, ContestId, _),
+    not solved_task_by_session(SessionId, ContestId, Letter).
+res(ContestId, Letter) :-
+    Problems(ContestId, Letter, _),
+    not dont_solved_tasks_by_everyone(ContestId, Letter).

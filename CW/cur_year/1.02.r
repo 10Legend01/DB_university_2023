@@ -1,0 +1,1 @@
+π{TeamName}(σ{ContestId = :ContestId}(Sessions ⋈ Teams))

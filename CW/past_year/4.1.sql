@@ -1,0 +1,1 @@
+select SessionId, count(distinct ) as Solved from Sessions
